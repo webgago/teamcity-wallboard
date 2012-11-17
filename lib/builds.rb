@@ -44,7 +44,7 @@ class Builds
   end
 
   def commiters(build)
-    client.commiters(build['changes']['href']).join(', ')
+    client.commiters(build['changes']['href'])
   end
 end
 

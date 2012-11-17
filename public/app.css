@@ -1,0 +1,73 @@
+ul li {
+    list-style: none;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background: #111;
+}
+
+.container {
+    margin-top: 40px;
+}
+
+.b-builds {
+    width: 100%;
+}
+
+.b-build {
+    color: white;
+    margin: 20px;
+    font-size: 3em;
+    height: 260px;
+    overflow: hidden;
+}
+
+.b-build_name {
+    font-size: 2em;
+    font-weight: bold;
+    border: 1px solid black;
+    border-radius: 25px;
+    padding: 10px 20px 10px 250px;
+    margin-bottom: 20px;
+}
+
+.b-build-success {
+    background: url(success.png) left top no-repeat, green;
+}
+
+.b-build-failure {
+    background: url(failure.png) left top no-repeat, red;
+}
+
+.b-time {
+    background: gray;
+    border: 1px solid black;
+    border-radius: 25px;
+    padding: 10px;
+}
+
+.b-commiter {
+    background: gray;
+    border: 1px solid black;
+    border-radius: 25px;
+    padding: 10px;
+}
+
+.b-status_text {
+    width: 40%;
+}
+
+.b-left {
+    display: inline-block;
+    width: 47%;
+    vertical-align: top;
+}
+
+.b-right {
+    vertical-align: top;
+    display: inline-block;
+    text-align: right;
+    width: 50%;
+}

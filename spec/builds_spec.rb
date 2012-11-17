@@ -32,7 +32,7 @@ describe Builds do
   end
 
   it "should return latest build authors for each build type" do
-    subject.latest.map { |b| b['commiters'] }.should eql ['commiter1, commiter2', 'commiter3']
+    subject.latest.map { |b| b['commiters'] }.should eql [%w(commiter1 commiter2), %w(commiter3)]
   end
 
   it "should return latest build status text for each build type" do

@@ -2,6 +2,7 @@ Wallboard = angular.module('wallboard', ['wallboard.services']).
     config(['$routeProvider', function ($routeProvider, $locationProvider) {
     $routeProvider.
         when('/teamcity', {templateUrl:'teamcity/builds.html', controller:BuildsCtrl})
+        .when('/teamcity/:id', {templateUrl:'teamcity/build.html', controller:BuildCtrl})
         .otherwise({redirectTo:'/teamcity'});
 
 }]);

@@ -2,7 +2,6 @@
 # More info at https://github.com/guard/guard#readme
 
 guard 'livereload' do
-  watch(%r{.+\.rb})
   watch(%r{lib/.+})
   watch(%r{public/.+})
   watch(%r{views/.+})

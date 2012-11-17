@@ -1,12 +1,14 @@
-<div ng-controller="BuildsCtrl">
-    <div>
-        <ul>
-            <li ng-repeat="build in builds">
-                <div ng-controller="BuildCtrl">
-                    {{build.name}}
-                    <abbr title="{{build.start_date}}">{{build.time_ago}}</abbr>
+<div ng-controller="BuildsCtrl" class="b-builds">
+    <ul>
+        <li ng-repeat="build in builds">
+            <div class="b-build" ng-controller="BuildCtrl">
+                <div class="b-build_name b-build-{{build.status}}">{{build.name}}</div>
+                <div class="b-left">
+                    <span class="b-time" title="{{build.start_date}}">{{build.time_ago}}</span>
+                    <span class="b-commiter" ng-repeat="commiter in build.commiters">{{commiter}}</span>
                 </div>
-            </li>
-        </ul>
-    </div>
+                <div class="b-right b-status_text">{{build.status_text}}</div>
+            </div>
+        </li>
+    </ul>
 </div>
