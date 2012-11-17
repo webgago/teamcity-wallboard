@@ -1,0 +1,12 @@
+<div ng-controller="BuildsCtrl">
+    <div>
+        <ul>
+            <li ng-repeat="build in builds">
+                <div ng-controller="BuildCtrl">
+                    {{build.name}}
+                    <abbr title="{{build.start_date}}">{{build.time_ago}}</abbr>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
