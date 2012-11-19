@@ -12,20 +12,44 @@ class Builds
     client.build_types.map { |type| type['id'] }
   end
 
+  def running
+    builds = client.build({ }, { locator: 'running:true' })['build']
+    Array(builds).map do |b|
+      {
+          'type'       => b['buildTypeId'],
+          'running'    => b['running'],
+          'number'     => b['number'],
+          'percentage' => b['percentageComplete'],
+          'status'     => status(b),
+          'start_date'  => start_date(b)
+      }
+    end
+  end
+
   def latest
     builds = build_types.map { |build_type| client.build(buildType: build_type) }.compact
-    builds.map do |build|
+    Array(builds).map do |build|
       {
-          'name' => name(build),
-          'status' => status(build),
-          'commiters' => commiters(build),
+          'id'          => id(build),
+          'type'        => type(build),
+          'name'        => name(build),
+          'status'      => status(build),
+          'commiters'   => commiters(build),
           'status_text' => status_text(build),
-          'start_date' => start_date(build)
+          'start_date'  => start_date(build)
       }
     end
   end
 
   protected
+
+  def id(build)
+    build['id']
+  end
+
+  def type(build)
+    build['buildType']['id']
+  end
 
   def name(build)
     [build['buildType']['projectName'], build['buildType']['name']].join(' ')

@@ -29,16 +29,41 @@ html, body {
     font-weight: bold;
     border: 1px solid black;
     border-radius: 25px;
+    box-shadow: inset 1px 1px 10px 1px rgba(1, 1, 1, 0.5);
+
     padding: 10px 20px 10px 250px;
     margin-bottom: 20px;
 }
 
 .b-build-success {
-    background: url(success.png) left top no-repeat, green;
+    background: url(success.png) left top no-repeat, -webkit-linear-gradient(top, #5fdb43 0%,#009307 100%);
 }
 
 .b-build-failure {
-    background: url(failure.png) left top no-repeat, red;
+    background: url(failure.png) left top no-repeat, -webkit-linear-gradient(top, #c90000 0%,#aa1b1b 100%);
+}
+
+.b-build-unknown {
+    background: url(failure.png) left top no-repeat, -webkit-linear-gradient(top, #c90000 0%,#aa1b1b 100%);;
+}
+
+.b-build-running-unknown {
+    background: url(running.png) left top no-repeat, -webkit-linear-gradient(top, #c90000 0%,#aa1b1b 100%);;
+}
+
+.b-build-running-failure {
+    padding-left: 50px;
+    background: url(running.png) left top no-repeat, -webkit-linear-gradient(top, #c90000 0%,#aa1b1b 100%);
+}
+.b-build-running-success {
+    padding-left: 50px;
+    background: url(running.png) left top no-repeat, -webkit-linear-gradient(top, #5fdb43 0%,#009307 100%);
+}
+
+.b-percentage {
+    color: red;
+    top: 25px;
+    position: relative;
 }
 
 .b-time {

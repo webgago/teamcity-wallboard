@@ -7,14 +7,14 @@ module Teamcity
       @client = RestClient::Resource.new url, 'admin', '11111'
     end
 
-    def build(params)
-      JSON.parse client["builds/#{join_params(params)}"].get accept: :json
+    def build(params, filter = {})
+      JSON.parse client["builds/#{join_params(params)}#{join_filters(filter)}"].get accept: :json
     rescue => e
     end
 
     def commiters(changes_href)
       changes = changes(changes_href[/changes.*/])
-      changes['change'].map do |c|
+      Array(changes['change']).map do |c|
         change(c['href'][/changes.*/])['username']
       end
     end
@@ -48,6 +48,11 @@ module Teamcity
 
     def join_params(hash)
       hash.map { |k, v| [k,v].join(':')  }.join('/')
+    end
+
+    def join_filters(filters)
+      filter = filters.map { |k, v| [k,v].join('=')  }.join('&')
+      filter ? "?" << filter : ''
     end
   end
 end

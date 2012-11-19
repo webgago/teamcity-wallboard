@@ -4,13 +4,15 @@ describe Builds do
   let(:client) { double('client') }
 
   before do
-    client.stub(:build).and_return({ 'buildType'  => { 'projectName' => 'ProjectName1', 'name' => 'BuildName1' },
+    client.stub(:build).and_return({ 'id'         => '1',
+                                     'buildType'  => { 'id' => 'bt1', 'projectName' => 'ProjectName1', 'name' => 'BuildName1' },
                                      'status'     => 'FAILURE',
                                      'statusText' => 'text2',
                                      'startDate'  => '20121117T201959+0400',
                                      'changes'    => { 'href' => '/changes?build=id:188' } },
 
-                                   { 'buildType'  => { 'projectName' => 'ProjectName2', 'name' => 'BuildName2' },
+                                   { 'id'         => '2',
+                                     'buildType'  => { 'id' => 'bt2', 'projectName' => 'ProjectName2', 'name' => 'BuildName2' },
                                      'status'     => 'SUCCESS',
                                      'statusText' => 'text1',
                                      'startDate'  => '20121117T202021+0400',
@@ -37,6 +39,10 @@ describe Builds do
 
   it "should return latest build status text for each build type" do
     subject.latest.map { |b| b['status_text'] }.should eql %w(text2 text1)
+  end
+
+  it "should return latest build id for each build type" do
+    subject.latest.map { |b| b['id'] }.should eql %w(1 2)
   end
 
   it "should return latest build start dates for each build type" do

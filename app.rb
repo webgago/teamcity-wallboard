@@ -24,6 +24,11 @@ get "/teamcity/builds.html" do
   erb :builds
 end
 
+get "/teamcity/builds/running.json" do
+  teamcity = Teamcity::Client.new(settings.api_uri)
+  json Builds.new(teamcity).running
+end
+
 get "/teamcity/builds.json" do
   teamcity = Teamcity::Client.new(settings.api_uri)
   json Builds.new(teamcity).latest
